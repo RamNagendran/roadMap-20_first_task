@@ -1,7 +1,11 @@
 // --------- Api function --------------------------------
-async function bookApi () {
-    const res = await fetch('https://gutendex.com/books/')
-    return res.json()
+async function bookApi() {
+    try {
+        const res = await fetch('https://gutendex.com/books/')
+        return res.json()
+    } catch (e) {
+        console.error(e)
+    }
 }
 
 // ----------- main function --------------------------------
@@ -16,7 +20,7 @@ async function bookApi () {
 
 // ----- get data from api and building cards with api datas --------------------
 async function createCard() {
-    const res = await  bookApi()
+    const res = await bookApi()
     const rowDiv = document.createElement('div')
     rowDiv.setAttribute('class', 'row')
     if (res && res.results) {
